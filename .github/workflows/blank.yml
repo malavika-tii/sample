@@ -1,0 +1,19 @@
+# This is a basic workflow to help you get started with Actions
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted 
+    steps:
+      - name: Ping device
+        run: |
+          IP="10.151.41.21"
+          if ping -c 3 $IP > /dev/null; then
+            echo "Device is reachable"
+          else
+            echo "Device is NOT reachable"
+            exit 1
+          fi
